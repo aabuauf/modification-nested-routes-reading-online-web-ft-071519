@@ -16,9 +16,9 @@ class PostsController < ApplicationController
     end
   end
 
-  def new
-    @post = Post.new
-  end
+ def new
+  @post = Post.new(author_id: params[:author_id])
+end
 
   def create
     @post = Post.new(post_params)
@@ -36,9 +36,9 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
   end
 
-  private
-
-  def post_params
-    params.require(:post).permit(:title, :description)
-  end
+private
+ 
+def post_params
+  params.require(:post).permit(:title, :description, :author_id)
+end
 end
